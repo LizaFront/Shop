@@ -35,5 +35,12 @@
                 "array-callback-return": "off"
             }
         }
-    ]
+    ],
+    "settings": {
+        "import/resolver": {
+            "babel-module": {
+                "root": ["src/"]
+            }
+        }
+    }
 }

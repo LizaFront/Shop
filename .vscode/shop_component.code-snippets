@@ -1,0 +1,16 @@
+{
+    "Shop": {
+        "scope": "javascript, typescript",
+        "prefix": "comp",
+        "body": [
+            "import React, { memo, FC } from \"react\";",
+            "type $Name$Props = {}",
+            "const $Name$: FC<$Name$Props> = () => {",
+            "    return <div>$Name$$END$</div>;",
+            "};",
+            "export default memo($Name$);",
+            ""
+        ],
+        "description": "Shop"
+    }
+}
