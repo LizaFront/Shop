@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 
-import Card from './components/product/Card';
+import Card from 'components/product/Card';
 
-import { useAppDispatch } from './hooks/useAppDispatch';
-import { useAppSelector } from './hooks/useAppSelector';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { useAppSelector } from 'hooks/useAppSelector';
 
-import { getInitialProducts, productsSelector } from './store/productSlice';
+import { getInitialProducts, productsSelector } from 'store/productSlice';
 
 function App() {
     const dispatch = useAppDispatch();
