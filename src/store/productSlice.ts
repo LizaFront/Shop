@@ -1,6 +1,7 @@
 import { asyncThunkCreator, buildCreateSlice } from '@reduxjs/toolkit';
-import { IProduct } from '../models/product.data';
-import { Services } from '../services/services';
+
+import { IProduct } from 'models/product.data';
+import { Services } from 'services/services';
 
 const createSliceWithThunks = buildCreateSlice({
     creators: {
@@ -11,13 +12,13 @@ const createSliceWithThunks = buildCreateSlice({
 interface IinitialState {
     loading: boolean;
     products: IProduct[];
-    error: null | {};
+    error: boolean;
 }
 
 const initialState: IinitialState = {
     loading: false,
     products: [],
-    error: null,
+    error: false,
 };
 
 export const productSlice = createSliceWithThunks({
@@ -34,7 +35,7 @@ export const productSlice = createSliceWithThunks({
                     state.loading = true;
                 },
                 rejected: (state, action) => {
-                    state.error = action.payload ?? action.error;
+                    state.error = true;
                 },
                 fulfilled: (state, action) => {
                     state.products = action.payload;
@@ -47,10 +48,12 @@ export const productSlice = createSliceWithThunks({
     }),
     selectors: {
         productsSelector: state => state.products,
+        loadingSelector: state => state.loading,
+        errorSelector: state => state.error,
     },
 });
 
 export const { getInitialProducts } = productSlice.actions;
-export const { productsSelector } = productSlice.selectors;
+export const { productsSelector, loadingSelector, errorSelector } = productSlice.selectors;
 
 export default productSlice.reducer;
