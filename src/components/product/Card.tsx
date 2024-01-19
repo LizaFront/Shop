@@ -1,21 +1,23 @@
 import { Fragment, memo, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAppSelector } from 'hooks/useAppSelector';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 
 import SkeletonLoader from 'components/SkeletonLoader';
 import ErrorMessage from 'components/Error';
+import Description from 'components/Description';
 
 import { errorSelector, getInitialProducts, loadingSelector, productsSelector } from 'store/productSlice';
 
 import { IProduct } from 'models/product.data';
 
 import { Title, Wrapper } from 'assets/styles/global.styles';
-import { Description, Image, Text, WrapperCard, Price, WrapperSkeleton } from './styledComponents';
+import { Image, WrapperCard, Price, WrapperSkeleton, Button, WrapperDescription } from './styledComponents';
 
 const Card = memo(() => {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
     const products = useAppSelector(productsSelector);
@@ -31,6 +33,8 @@ const Card = memo(() => {
             setData(card);
         }
     };
+
+    const goBack = () => navigate(-1);
 
     useEffect(() => {
         dispatch(getInitialProducts('products'));
@@ -60,14 +64,16 @@ const Card = memo(() => {
                     data.map(item => (
                         <Fragment key={item.id}>
                             <Image src={item.image} alt={item.title} />
-                            <Description>
+                            <WrapperDescription>
                                 <Title>{item.title}</Title>
-                                <Text>{item.description}</Text>
+                                <Description text={item.description}></Description>
+                                {/* <Text>{textLength(item.description)}</Text> */}
                                 <Price>{`Price: ${item.price}$`}</Price>
-                            </Description>
+                            </WrapperDescription>
                         </Fragment>
                     ))
                 )}
+                <Button onClick={goBack}>Go Back</Button>
             </WrapperCard>
         </Wrapper>
     );

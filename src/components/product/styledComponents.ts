@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 // Card
 export const WrapperCard = styled('div')({
     display: 'flex',
+    position: 'relative',
     width: '100%',
     minHeight: '50vh',
     padding: '20px',
@@ -20,7 +21,7 @@ export const Image = styled('img')({
     objectFit: 'contain',
 });
 
-export const Description = styled('div')({
+export const WrapperDescription = styled('div')({
     display: 'block',
     position: 'relative',
     padding: '0 30px',
@@ -28,8 +29,9 @@ export const Description = styled('div')({
 });
 
 export const Text = styled('div')({
-    display: 'block',
-    width: '100%',
+    display: 'flex',
+    position: 'relative',
+    flexDirection: 'column',
     fontSize: '1.1rem',
 });
 
@@ -49,6 +51,44 @@ export const WrapperSkeleton = styled('div')({
     width: '100%',
     height: '100%',
     marginTop: '80px',
+});
+
+export const Button = styled('button')({
+    display: 'flex',
+    position: 'absolute',
+    bottom: '5px',
+    left: '5px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '4px 8px',
+    border: 'none',
+    cursor: 'pointer',
+    background: 'transparent',
+    textDecoration: 'underline',
+    transition: 'all 0.3s',
+    '&:hover': {
+        color: 'red',
+    },
+});
+export const DetailsBtn = styled('button')({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: '-30px',
+    right: 0,
+    maxWidth: '150px',
+    padding: '10px 20px',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    transition: 'all 0.3s',
+    border: 'none',
+    textTransform: 'uppercase',
+    color: '#fff',
+    background: '#040441bf',
+    '&:hover': {
+        color: 'red',
+    },
 });
 
 // Catalog
