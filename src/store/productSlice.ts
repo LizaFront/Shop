@@ -1,4 +1,4 @@
-import { asyncThunkCreator, buildCreateSlice } from '@reduxjs/toolkit';
+import { PayloadAction, asyncThunkCreator, buildCreateSlice } from '@reduxjs/toolkit';
 
 import { IProduct } from 'models/product.data';
 import { Services } from 'services/services';
@@ -45,6 +45,18 @@ export const productSlice = createSliceWithThunks({
                 },
             }
         ),
+        saveLocalStorage: create.reducer((state, action: PayloadAction<IProduct[]>) => {
+            state.products = action.payload;
+        }),
+        addNewCard: create.reducer((state, action: PayloadAction<IProduct>) => {
+            state.products.unshift({
+                id: new Date().toISOString(),
+                title: action.payload.title,
+                description: action.payload.description,
+                price: action.payload.price,
+                image: action.payload.image,
+            });
+        }),
     }),
     selectors: {
         productsSelector: state => state.products,
@@ -53,7 +65,7 @@ export const productSlice = createSliceWithThunks({
     },
 });
 
-export const { getInitialProducts } = productSlice.actions;
+export const { getInitialProducts, saveLocalStorage, addNewCard } = productSlice.actions;
 export const { productsSelector, loadingSelector, errorSelector } = productSlice.selectors;
 
 export default productSlice.reducer;

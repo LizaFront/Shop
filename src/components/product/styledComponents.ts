@@ -91,6 +91,27 @@ export const DetailsBtn = styled('button')({
     },
 });
 
+export const DeleteBtnCard = styled('button')({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    padding: '4px',
+    borderRadius: '4px',
+    background: 'transparent',
+    cursor: 'pointer',
+    border: '1px solid #9112125c',
+    textTransform: 'uppercase',
+    fontSize: '0.7rem',
+    transition: 'all 0.3s',
+    '&:hover': {
+        background: '#911212bd',
+        color: '#fff',
+    },
+});
+
 // Catalog
 
 export const WrapperCatalog = styled('div')({
